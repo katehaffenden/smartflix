@@ -3,3 +3,7 @@
   :queues:
     - movies
     - default
+  :schedule:
+    create_movie_worker:
+        cron: '0 * * * * *'
+        class: CreateMovieWorker
