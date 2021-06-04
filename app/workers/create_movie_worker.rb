@@ -6,10 +6,12 @@ require 'sidekiq-scheduler'
 
 class CreateMovieWorker
   include Sidekiq::Worker
+  include MovieApiAdapter
+
   sidekiq_options queue: :movies, retry: false
 
   def perform
-    response = JSON.parse(fetch_movie_data)
+    response = MovieApiAdapter.fetch_data
     Movie.create(title: response['Title'],
                  year: response['Year'].to_i,
                  rated: response['Rated'],
@@ -18,20 +20,5 @@ class CreateMovieWorker
                  plot: response['Plot'],
                  runtime: response['Runtime'],
                  language: response['Language'])
-  end
-
-  private
-
-  def fetch_movie_data
-    HTTP.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}")
-  end
-
-  def movie_title
-    title = Faker::Movie.title
-    title.gsub!(/\s/,'+')
-  end
-
-  def omdb_key
-    ENV['OMDB_KEY']
   end
 end
