@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-require 'http'
 require 'sidekiq-scheduler'
 
 class CreateMovieWorker

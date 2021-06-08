@@ -34,7 +34,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'sidekiq'
   gem 'faker'
-  gem 'http'
+  gem 'httparty'
   gem 'sidekiq-scheduler'
   gem 'rspec-rails'
   gem 'rubocop'

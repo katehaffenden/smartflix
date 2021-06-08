@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 require 'faker'
-require 'http'
+require 'httparty'
 
 module MovieApiAdapter
 
   def self.fetch_data
-    response = HTTP.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}")
+    response = HTTParty.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}").to_s
+    puts response
     JSON.parse(response)
   end
+
+  private
 
   def self.omdb_key
     ENV['OMDB_KEY']
