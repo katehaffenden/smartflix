@@ -4,13 +4,10 @@ require 'faker'
 require 'httparty'
 
 module MovieApiAdapter
-
   def self.fetch_data
     response = HTTParty.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}").to_s
     JSON.parse(response)
   end
-
-  private
 
   def self.omdb_key
     ENV['OMDB_KEY']
@@ -18,6 +15,6 @@ module MovieApiAdapter
 
   def self.movie_title
     title = Faker::Movie.title
-    title.gsub!(/\s/,'+')
+    title.gsub!(/\s/, '+')
   end
 end
