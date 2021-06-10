@@ -7,7 +7,6 @@ module MovieApiAdapter
 
   def self.fetch_data
     response = HTTParty.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}").to_s
-    puts response
     JSON.parse(response)
   end
 
