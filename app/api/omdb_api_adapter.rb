@@ -3,7 +3,7 @@
 require 'faker'
 require 'httparty'
 
-module MovieApiAdapter
+module OmdbApiAdapter
   def self.fetch_data
     response = HTTParty.get("http://www.omdbapi.com/?t=#{movie_title}&apikey=#{omdb_key}").to_s
     JSON.parse(response)

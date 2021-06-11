@@ -11,7 +11,7 @@ RSpec.describe CreateMovieWorker do
                    'Released' => '19 Mar 1959', 'Runtime' => '121 min',
                    'Plot' => 'Plot summary goes here', 'Genre' => 'Comedy' }
 
-      expect(MovieApiAdapter).to receive(:fetch_data).and_return(response)
+      expect(OmdbApiAdapter).to receive(:fetch_data).and_return(response)
       expect(subject).to be_kind_of(Movie)
       expect(subject).to have_attributes(title: 'Some Like It Hot', year: 1959, rated: 'Passed',
                                          released: '1959-03-19 00:00:00.000000000 +0000'.to_datetime,

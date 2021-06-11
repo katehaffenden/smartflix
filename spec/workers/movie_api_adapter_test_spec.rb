@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe MovieApiAdapter do
-  subject { MovieApiAdapter.fetch_data }
+RSpec.describe OmdbApiAdapter do
+  subject { OmdbApiAdapter.fetch_data }
 
   it 'makes a call to omdb api' do
-    allow(MovieApiAdapter).to receive(:movie_title).and_return('Some+Like+It+Hot')
+    allow(OmdbApiAdapter).to receive(:movie_title).and_return('Some+Like+It+Hot')
     request = stub_request(:get, 'http://www.omdbapi.com/?apikey=9ae4798d&t=Some%20Like%20It%20Hot')
               .with(
                 headers: {

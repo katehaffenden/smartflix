@@ -5,12 +5,12 @@ require 'sidekiq-scheduler'
 class CreateMovieWorker
 
   include Sidekiq::Worker
-  include MovieApiAdapter
+  include OmdbApiAdapter
 
   sidekiq_options queue: :movies, retry: false
 
   def perform
-    response = MovieApiAdapter.fetch_data
+    response = OmdbApiAdapter.fetch_data
     Movie.create(title: response['Title'],
                  year: response['Year'].to_i,
                  rated: response['Rated'],
