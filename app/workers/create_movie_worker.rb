@@ -3,6 +3,7 @@
 require 'sidekiq-scheduler'
 
 class CreateMovieWorker
+
   include Sidekiq::Worker
   include MovieApiAdapter
 
