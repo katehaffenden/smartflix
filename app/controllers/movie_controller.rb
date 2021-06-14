@@ -9,9 +9,4 @@ class MovieController < ApplicationController
     end
   end
 
-  private
-
-  def not_found
-    head 404, "Content Type" => "application/json"
-  end
 end
