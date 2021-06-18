@@ -59,6 +59,7 @@ group :test do
   gem 'webmock'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
