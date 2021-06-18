@@ -27,7 +27,7 @@ RSpec.describe OmdbApiAdapter do
     subject { OmdbApiAdapter.fetch_data(title) }
     let(:title) { 'The Godfather' }
 
-    it 'makes a request with the provided movie title params' do
+    it 'makes a request with the provided movie title' do
       request = stub_request(:get, 'http://www.omdbapi.com/?apikey=9ae4798d&t=The%20Godfather')
                 .with(
                   headers: {
