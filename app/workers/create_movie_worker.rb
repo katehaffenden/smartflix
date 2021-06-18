@@ -7,12 +7,8 @@ class CreateMovieWorker
 
   sidekiq_options queue: :movies, retry: false
 
-  def initialize(title = nil)
-    @title = title
-  end
-
-  def perform
-    response = OmdbApiAdapter.fetch_data(title = @title)
+  def perform(title)
+    response = OmdbApiAdapter.fetch_data(title)
     Movie.create(title: response['Title'],
                  year: response['Year'].to_i,
                  rated: response['Rated'],

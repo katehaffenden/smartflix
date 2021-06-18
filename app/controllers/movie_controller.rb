@@ -1,11 +1,12 @@
 
 class MovieController < ApplicationController
-  def get
-    result = Movie.find_by(title: params[:title])
-    if result == nil
-      CreateMovieWorker.new(title = params[:title]).perform
+  def show
+    movie = Movie.find_by(title: params[:title])
+    if movie
+      render json: movie
     else
-      result
+      CreateMovieWorker.perform_async(params[:title])
+      render json: {body: "Movie not found, please try back later" }.to_json, status: 404
     end
   end
 
