@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MovieController < ApplicationController
+class MoviesController < ApplicationController
   def show
     movie = Movie.find_by(title: params[:title])
     if movie
