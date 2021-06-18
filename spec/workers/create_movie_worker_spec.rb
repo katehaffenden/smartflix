@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe CreateMovieWorker do
   describe '#perform' do
     subject { described_class.new.perform(title) }
-    let (:title) { "Some+Like+It+Hot" }
-
+    let(:title) { 'Some+Like+It+Hot' }
 
     it 'saves a Movie object with correct attributes' do
       response = { 'Title' => 'Some Like It Hot', 'Year' => '1959', 'Rated' => 'Passed',

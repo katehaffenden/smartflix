@@ -10,8 +10,6 @@ module OmdbApiAdapter
     JSON.parse(response)
   end
 
-  private
-
   def self.omdb_key
     ENV['OMDB_KEY']
   end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class MovieController < ApplicationController
   def show
@@ -6,8 +7,7 @@ class MovieController < ApplicationController
       render json: movie
     else
       CreateMovieWorker.perform_async(params[:title])
-      render json: {body: "Movie not found, please try back later" }.to_json, status: 404
+      render json: { body: 'Movie not found, please try back later' }.to_json, status: 404
     end
   end
-
 end
