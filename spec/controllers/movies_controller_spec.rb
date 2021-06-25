@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-#
+
 require 'rails_helper'
 
 RSpec.describe MoviesController do
   subject { described_class.new }
 
-  describe ' get #show' do
+  describe 'get #show' do
     context 'when the movie is in the database' do
       let(:movie) { create(:movie) }
 
@@ -25,5 +25,4 @@ RSpec.describe MoviesController do
       end
     end
   end
-
 end

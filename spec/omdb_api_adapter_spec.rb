@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe OmdbApiAdapter do
-
   describe '#fetch_data' do
     context 'when no title parameter is supplied' do
       subject { described_class.fetch_data }
@@ -11,9 +10,9 @@ RSpec.describe OmdbApiAdapter do
       it 'makes a request to the omdb api, returning a hash of movie data' do
         allow(OmdbApiAdapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
 
-        VCR.use_cassette "movie_request_some_like_it_hot" do
+        VCR.use_cassette 'movie_request_some_like_it_hot' do
           expect(subject).to be_a_kind_of Hash
-          expect(subject['Title']).to eq("Some Like It Hot")
+          expect(subject['Title']).to eq('Some Like It Hot')
         end
       end
     end
@@ -23,9 +22,9 @@ RSpec.describe OmdbApiAdapter do
       let(:title) { 'The Godfather' }
 
       it 'makes a request to the omdb api, returning a hash for the provided title' do
-        VCR.use_cassette "movie_request_the_godfather" do
+        VCR.use_cassette 'movie_request_the_godfather' do
           expect(subject).to be_a_kind_of Hash
-          expect(subject['Title']).to eq("The Godfather")
+          expect(subject['Title']).to eq('The Godfather')
         end
       end
     end
