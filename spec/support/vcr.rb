@@ -13,7 +13,8 @@ VCR.configure do |c|
   # This line makes VCR ignore requests to localhost. This is necessary
   # even if WebMock's allow_localhost is set to true.
   c.ignore_localhost = true
-  c.default_cassette_options = { record: :new_episodes }
+  c.default_cassette_options = { record: :once,
+                                 match_requests_on: [:body, :method]}
   # ChromeDriver will make requests to chromedriver.storage.googleapis.com
   # to (I believe) check for updates. These requests will just show up as
   # noise in our cassettes unless we tell VCR to ignore these requests.

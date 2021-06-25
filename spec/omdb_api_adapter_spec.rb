@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -10,7 +9,7 @@ RSpec.describe OmdbApiAdapter do
       it 'makes a request to the omdb api, returning a hash of movie data' do
         allow(OmdbApiAdapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
 
-        VCR.use_cassette 'movie_request_some_like_it_hot' do
+        VCR.use_cassette 'movie_request_some_like_it_hot', allow_playback_repeats: true do
           expect(subject).to be_a_kind_of Hash
           expect(subject['Title']).to eq('Some Like It Hot')
         end
@@ -27,6 +26,15 @@ RSpec.describe OmdbApiAdapter do
           expect(subject['Title']).to eq('The Godfather')
         end
       end
+    end
+  end
+
+  describe '#get_movie_title' do
+    subject { described_class.get_movie_title }
+    it 'generates and formats a movie title' do
+      allow(Faker::Movie).to receive(:title).and_return("The Big Lebowski")
+
+      expect(subject).to eq("The+Big+Lebowski")
     end
   end
 end
