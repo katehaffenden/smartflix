@@ -16,4 +16,5 @@ VCR.configure do |c|
   # to (I believe) check for updates. These requests will just show up as
   # noise in our cassettes unless we tell VCR to ignore these requests.
   c.ignore_hosts "chromedriver.storage.googleapis.com"
+  c.filter_sensitive_data('apikey') { ENV['OMDB_KEY'] }
 end

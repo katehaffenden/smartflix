@@ -1,0 +1,127 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=apikey&t=The%20Godfather
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Jun 2021 10:30:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Fri, 25 Jun 2021 11:30:34 GMT
+      Last-Modified:
+      - Fri, 25 Jun 2021 10:30:34 GMT
+      Vary:
+      - "*, Accept-Encoding"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - MISS
+      Cf-Request-Id:
+      - 0ae451b8a4000006ddfb2f2000000001
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 664d856ddcb306dd-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Title":"The Godfather","Year":"1972","Rated":"R","Released":"24 Mar
+        1972","Runtime":"175 min","Genre":"Crime, Drama","Director":"Francis Ford
+        Coppola","Writer":"Mario Puzo (screenplay by), Francis Ford Coppola (screenplay
+        by), Mario Puzo (based on the novel by)","Actors":"Marlon Brando, Al Pacino,
+        James Caan, Richard S. Castellano","Plot":"An organized crime dynasty''s aging
+        patriarch transfers control of his clandestine empire to his reluctant son.","Language":"English,
+        Italian, Latin","Country":"USA","Awards":"Won 3 Oscars. Another 29 wins &
+        30 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet
+        Movie Database","Value":"9.2/10"},{"Source":"Rotten Tomatoes","Value":"97%"},{"Source":"Metacritic","Value":"100/100"}],"Metascore":"100","imdbRating":"9.2","imdbVotes":"1,666,752","imdbID":"tt0068646","Type":"movie","DVD":"01
+        Aug 2013","BoxOffice":"$134,966,411","Production":"Paramount Pictures","Website":"N/A","Response":"True"}'
+    http_version:
+  recorded_at: Fri, 25 Jun 2021 10:30:34 GMT
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=apikey&t=The%20Godfather
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Jun 2021 10:52:26 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Fri, 25 Jun 2021 11:52:26 GMT
+      Last-Modified:
+      - Fri, 25 Jun 2021 10:52:26 GMT
+      Vary:
+      - "*, Accept-Encoding"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - MISS
+      Cf-Request-Id:
+      - 0ae465bf1d00004066ca999000000001
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 664da5782a004066-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Title":"The Godfather","Year":"1972","Rated":"R","Released":"24 Mar
+        1972","Runtime":"175 min","Genre":"Crime, Drama","Director":"Francis Ford
+        Coppola","Writer":"Mario Puzo (screenplay by), Francis Ford Coppola (screenplay
+        by), Mario Puzo (based on the novel by)","Actors":"Marlon Brando, Al Pacino,
+        James Caan, Richard S. Castellano","Plot":"An organized crime dynasty''s aging
+        patriarch transfers control of his clandestine empire to his reluctant son.","Language":"English,
+        Italian, Latin","Country":"USA","Awards":"Won 3 Oscars. Another 29 wins &
+        30 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet
+        Movie Database","Value":"9.2/10"},{"Source":"Rotten Tomatoes","Value":"97%"},{"Source":"Metacritic","Value":"100/100"}],"Metascore":"100","imdbRating":"9.2","imdbVotes":"1,666,752","imdbID":"tt0068646","Type":"movie","DVD":"01
+        Aug 2013","BoxOffice":"$134,966,411","Production":"Paramount Pictures","Website":"N/A","Response":"True"}'
+    http_version:
+  recorded_at: Fri, 25 Jun 2021 10:52:26 GMT
+recorded_with: VCR 5.1.0
