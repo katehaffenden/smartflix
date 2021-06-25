@@ -10,12 +10,14 @@ module OmdbApiAdapter
     JSON.parse(response)
   end
 
-  def self.omdb_key
-    ENV['OMDB_KEY']
-  end
-
   def self.get_movie_title
     title = Faker::Movie.title
     title.gsub!(/\s/, '+')
+  end
+
+  private
+
+  def self.omdb_key
+    ENV['OMDB_KEY']
   end
 end
