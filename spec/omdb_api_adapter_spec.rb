@@ -9,7 +9,7 @@ RSpec.describe OmdbApiAdapter do
       it 'makes a request to the omdb api, returning a hash of movie data' do
         allow(OmdbApiAdapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
 
-        VCR.use_cassette 'movie_request_some_like_it_hot', allow_playback_repeats: true do
+        VCR.use_cassette 'movie_request_some_like_it_hot' do
           expect(subject).to be_a_kind_of Hash
           expect(subject['Title']).to eq('Some Like It Hot')
         end
