@@ -17,5 +17,6 @@ In the root directory run the following command to run all tests:
 
 ### Possible improvements ###
 
-* Add a unit that handles the creation of a movie
-* Edit the inclusion of title in the create movie worker so the worker can be ran and generate a movie of its own.
+* Add a unit that handles the creation of a movie so the logic around params can be extracted out of the worker. 
+* If we change the default param for an object (ie so that it isn't id - which is the default primary param in rails) then you might also want to change the model to reflect this to (to_param method)
+* The method to fetch the api key could be replaced with a private constant in the api adapter.
