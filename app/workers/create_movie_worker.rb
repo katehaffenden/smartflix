@@ -26,7 +26,6 @@ class CreateMovieWorker
                  language: movie_attributes[:language])
   end
 
-
   def fetch_data(title)
     @response ||= OmdbApiAdapter.fetch_data(title)
   end
