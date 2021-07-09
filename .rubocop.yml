@@ -1,14 +1,20 @@
-inherit_from: .rubocop_todo.yml
+require:
+ - rubocop-rspec
+ - rubocop-rails
 
-Exclude:
-  - 'config/**/*'
-  - 'storage/**/*'
-  - 'public/**/*'
-  - 'log/**/*'
-  - 'tmp/**/*'
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'channels/**/*'
+    - 'bin/**'
+    - 'node_modules/**'
 
 Metrics/MethodLength:
-  Max: 6
+  Max: 10
 
 Layout/LineLength:
   Max: 120
@@ -31,8 +37,10 @@ Layout/SpaceInsideHashLiteralBraces:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
+  IgnoredMethods:
+    - 'describe'
+    - 'context'
   Max: 40
-  Exclude: 'spec/**/*'
 
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
@@ -69,7 +77,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'app/api/omdb_api_adapter.rb'
+    - 'app/api/omdb/api_adapter.rb'
     - 'app/controllers/movies_controller.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/models/application_record.rb'

@@ -16,7 +16,7 @@ RSpec.describe MoviesController do
     end
 
     context 'when movie is not in the database' do
-      it 'returns an error and enqueues a job' do
+      it 'returns an error' do
         expect(CreateMovieWorker).to receive(:perform_async)
 
         get :show, params: { title: '-1' }

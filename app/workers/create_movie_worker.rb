@@ -12,8 +12,6 @@ class CreateMovieWorker
 
   private
 
-  attr_reader :omdb_adapter
-
   def create_movie(movie_attributes)
     Movie.create(title: movie_attributes[:title],
                  year: movie_attributes[:year].to_i,
