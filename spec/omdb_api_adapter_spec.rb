@@ -4,10 +4,9 @@ RSpec.describe Omdb::ApiAdapter do
   describe '#fetch_data' do
     context 'when no title parameter is supplied' do
       subject { described_class.new.fetch_data }
-      let(:omdb_adapter) { Omdb::ApiAdapter.new }
 
       it 'makes a request to the omdb api, returning a hash of movie data' do
-        allow(omdb_adapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
+        allow(described_class.new).to receive(:movie_title).and_return('Some+Like+It+Hot')
 
         VCR.use_cassette 'movie_request_some_like_it_hot' do
           expect(subject).to be_a_kind_of Hash
@@ -42,8 +41,8 @@ RSpec.describe Omdb::ApiAdapter do
     end
   end
 
-  describe '#get_movie_title' do
-    subject { described_class.new.get_movie_title }
+  describe '#movie_title' do
+    subject { described_class.new.movie_title }
     it 'generates and formats a movie title' do
       allow(Faker::Movie).to receive(:title).and_return('The Big Lebowski')
 

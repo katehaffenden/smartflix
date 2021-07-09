@@ -1,1 +1,85 @@
 inherit_from: .rubocop_todo.yml
+
+Exclude:
+  - 'config/**/*'
+  - 'storage/**/*'
+  - 'public/**/*'
+  - 'log/**/*'
+  - 'tmp/**/*'
+
+Metrics/MethodLength:
+  Max: 6
+
+Layout/LineLength:
+  Max: 120
+
+RSpec/ContextWording:
+  Prefixes:
+  - when
+  - with
+  - without
+  - if
+  - and
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+Layout/SpaceInsideHashLiteralBraces:
+  Exclude:
+    - 'spec/support/vcr.rb'
+
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
+# IgnoredMethods: refine
+Metrics/BlockLength:
+  Max: 40
+  Exclude: 'spec/**/*'
+
+# Cop supports --auto-correct.
+Style/IfUnlessModifier:
+  Exclude:
+    - 'bin/bundle'
+
+# Cop supports --auto-correct.
+# Configuration parameters: SafeForConstants.
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
+
+# Cop supports --auto-correct.
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+# Cop supports --auto-correct.
+# Configuration parameters: .
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: percent
+  MinSize: 4
+
+# Cop supports --auto-correct.
+# Configuration parameters: .
+# SupportedStyles: use_perl_names, use_english_names
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
+# Configuration parameters: AllowedConstants.
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'app/api/omdb_api_adapter.rb'
+    - 'app/controllers/movies_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/models/application_record.rb'
+    - 'app/workers/create_movie_worker.rb'
+    - 'config/application.rb'
+    - 'db/migrate/20210602094822_create_movies.rb'
+    - 'db/migrate/20210604120921_add_year_to_movies.rb'
+    - 'db/migrate/20210604121207_add_rated_to_movies.rb'
+    - 'db/migrate/20210604121253_add_released_to_movies.rb'
+    - 'db/migrate/20210604121408_add_genre_to_movies.rb'
+    - 'db/migrate/20210604121611_add_runtime_to_movies.rb'
+    - 'db/migrate/20210604121649_add_plot_to_movies.rb'
+    - 'db/migrate/20210604121855_add_language_to_movies.rb'

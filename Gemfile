@@ -45,25 +45,25 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '~> 3.2'
-  gem 'web-console', '>= 3.3.0'
+  gem 'pry-rails'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-rails'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
+  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'simplecov', require: false
+  gem 'vcr'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'webmock'
-  gem 'database_cleaner'
-  gem 'database_cleaner-active_record'
-  gem 'shoulda-matchers', '~> 4.0'
-  gem 'vcr'
-  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

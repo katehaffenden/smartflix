@@ -7,16 +7,16 @@ module Omdb
   class ApiAdapter
 
     def fetch_data(title = nil)
-      title = get_movie_title if title.nil?
+      title = movie_title if title.nil?
       response = HTTParty.get("http://www.omdbapi.com/?t=#{title}&apikey=#{omdb_key}")
-      if response.body.include?('False') || !response.code == :ok
+      if response.body.include?('False')
         Rails.logger.warn "#{title} returned an error in the response"
       else
         response.parsed_response
       end
     end
 
-    def get_movie_title
+    def movie_title
       title = Faker::Movie.title
       title.gsub!(/\s/, '+')
     end
