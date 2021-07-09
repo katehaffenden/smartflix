@@ -22,3 +22,4 @@ In the root directory run the following command to run all tests:
 * The method to fetch the api key could be replaced with a private constant in the api adapter.
 * Clean  all gem configurations into separate support files, not just vcr and factory_bot
 * Correct folder structure so external api files and kept outside of api directory
+* omdb api adapter could be made into a class rather than a module

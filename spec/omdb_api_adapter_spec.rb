@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.describe OmdbApiAdapter do
@@ -18,12 +17,25 @@ RSpec.describe OmdbApiAdapter do
 
     context 'when a title parameter is supplied' do
       subject { described_class.fetch_data(title) }
-      let(:title) { 'The Godfather' }
 
-      it 'makes a request to the omdb api, returning a hash for the provided title' do
-        VCR.use_cassette 'movie_request_the_godfather' do
-          expect(subject).to be_a_kind_of Hash
-          expect(subject['Title']).to eq('The Godfather')
+      context 'when title supplied is not valid' do
+        let(:title) { 'Fake Movie Title' }
+        it 'makes a request to the omdb api and logs the failed response' do
+
+          VCR.use_cassette 'movie_request_invalid_title' do
+            expect(Rails.logger).to receive(:warn).with("#{title} returned an error in the response")
+            subject
+          end
+        end
+      end
+
+      context 'when title supplied is valid' do
+        let(:title) { 'The Godfather' }
+        it 'makes a request to the omdb api, returning a hash for the provided title' do
+          VCR.use_cassette 'movie_request_the_godfather' do
+            expect(subject).to be_a_kind_of Hash
+            expect(subject['Title']).to eq('The Godfather')
+          end
         end
       end
     end
@@ -32,9 +44,9 @@ RSpec.describe OmdbApiAdapter do
   describe '#get_movie_title' do
     subject { described_class.get_movie_title }
     it 'generates and formats a movie title' do
-      allow(Faker::Movie).to receive(:title).and_return("The Big Lebowski")
+      allow(Faker::Movie).to receive(:title).and_return('The Big Lebowski')
 
-      expect(subject).to eq("The+Big+Lebowski")
+      expect(subject).to eq('The+Big+Lebowski')
     end
   end
 end
