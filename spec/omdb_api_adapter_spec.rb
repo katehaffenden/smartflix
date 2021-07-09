@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe OmdbApiAdapter do
+RSpec.describe Omdb::ApiAdapter do
   describe '#fetch_data' do
     context 'when no title parameter is supplied' do
-      subject { described_class.fetch_data }
+      subject { described_class.new.fetch_data }
+      let(:omdb_adapter) { Omdb::ApiAdapter.new }
 
       it 'makes a request to the omdb api, returning a hash of movie data' do
-        allow(OmdbApiAdapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
+        allow(omdb_adapter).to receive(:get_movie_title).and_return('Some+Like+It+Hot')
 
         VCR.use_cassette 'movie_request_some_like_it_hot' do
           expect(subject).to be_a_kind_of Hash
@@ -16,7 +17,7 @@ RSpec.describe OmdbApiAdapter do
     end
 
     context 'when a title parameter is supplied' do
-      subject { described_class.fetch_data(title) }
+      subject { described_class.new.fetch_data(title) }
 
       context 'when title supplied is not valid' do
         let(:title) { 'Fake Movie Title' }
@@ -42,7 +43,7 @@ RSpec.describe OmdbApiAdapter do
   end
 
   describe '#get_movie_title' do
-    subject { described_class.get_movie_title }
+    subject { described_class.new.get_movie_title }
     it 'generates and formats a movie title' do
       allow(Faker::Movie).to receive(:title).and_return('The Big Lebowski')
 

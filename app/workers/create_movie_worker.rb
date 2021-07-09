@@ -2,18 +2,17 @@
 
 class CreateMovieWorker
   include Sidekiq::Worker
-  include OmdbApiAdapter
 
   sidekiq_options queue: :movies, retry: false
 
   def perform(title)
-    fetch_data(title)
-    create_movie(movie_attributes)
+    response = omdb_adapter.fetch_data(title)
+    create_movie(movie_attributes(response))
   end
 
   private
 
-  attr_reader :response
+  attr_reader :omdb_adapter
 
   def create_movie(movie_attributes)
     Movie.create(title: movie_attributes[:title],
@@ -26,11 +25,11 @@ class CreateMovieWorker
                  language: movie_attributes[:language])
   end
 
-  def fetch_data(title)
-    @response ||= OmdbApiAdapter.fetch_data(title)
+  def omdb_adapter
+    @omdb_adapter ||= Omdb::ApiAdapter.new
   end
 
-  def movie_attributes
-    @response.transform_keys! { |k| k.downcase.to_sym }
+  def movie_attributes(response)
+    response.transform_keys! { |k| k.downcase.to_sym }
   end
 end
