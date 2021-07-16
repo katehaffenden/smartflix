@@ -3,7 +3,7 @@ require:
  - rubocop-rails
 
 AllCops:
-  TargetRubyVesion: 2.7
+  TargetRubyVersion: 2.7
   NewCops: enable
   Exclude:
     - 'db/**/*'
@@ -23,15 +23,7 @@ Style/FrozenStringLiteralComment:
     - 'spec/omdb/**'
 
 Layout/LineLength:
-  Max: 120
-
-RSpec/ContextWording:
-  Prefixes:
-  - when
-  - with
-  - without
-  - if
-  - and
+  Max: 12
 
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: no_empty_lines
@@ -103,3 +95,14 @@ Rspec/NamedSubject:
 
 Rspec/MessageSpies:
   Enabled: false
+
+RSpec/FactoryBot/CreateList:
+  Enabled: false
+
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - without
+    - if
+    - and
