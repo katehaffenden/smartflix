@@ -13,7 +13,7 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
     - 'channels/**/*'
     - 'bin/**'
-    - 'node_modules/**'
+    - 'node_modules/**/*'
 
 Metrics/MethodLength:
   Max: 10
@@ -23,7 +23,7 @@ Style/FrozenStringLiteralComment:
     - 'spec/omdb/**'
 
 Layout/LineLength:
-  Max: 12
+  Max: 120
 
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: no_empty_lines
