@@ -3,6 +3,8 @@ require:
  - rubocop-rails
 
 AllCops:
+  TargetRubyVesion: 2.7
+  NewCops: enable
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -15,6 +17,10 @@ AllCops:
 
 Metrics/MethodLength:
   Max: 10
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'spec/omdb/**'
 
 Layout/LineLength:
   Max: 120
@@ -91,3 +97,9 @@ Style/Documentation:
     - 'db/migrate/20210604121611_add_runtime_to_movies.rb'
     - 'db/migrate/20210604121649_add_plot_to_movies.rb'
     - 'db/migrate/20210604121855_add_language_to_movies.rb'
+
+Rspec/NamedSubject:
+  Enabled: false
+
+Rspec/MessageSpies:
+  Enabled: false
