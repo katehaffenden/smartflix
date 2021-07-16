@@ -99,6 +99,10 @@ Rspec/MessageSpies:
 RSpec/FactoryBot/CreateList:
   Enabled: false
 
+RSpec/SubjectStub:
+  Exclude:
+    - 'spec/workers/create_movie_worker_spec.rb'
+
 RSpec/ContextWording:
   Prefixes:
     - when
