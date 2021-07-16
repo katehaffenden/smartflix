@@ -106,3 +106,9 @@ RSpec/ContextWording:
     - without
     - if
     - and
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false

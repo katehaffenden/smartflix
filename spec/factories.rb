@@ -6,7 +6,7 @@ FactoryBot.define do
     year { 1975 }
     rated { 'PG' }
     released do
-      DateTime.new(1975, 6, 20, 0, 0, 0)
+      Time.zone.local(1975, 6, 20, 0, 0, 0)
     end
     genre { 'Adventure' }
     plot do
