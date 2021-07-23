@@ -17,10 +17,9 @@ In the root directory run the following command to run all tests:
 
 ### Possible improvements ###
 
-* Add a unit that handles the creation of a movie so the logic around params can be extracted out of the worker. 
 * If we change the default param for an object (ie so that it isn't id - which is the default primary param in rails) then you might also want to change the model to reflect this to (to_param method)
 * The method to fetch the api key could be replaced with a private constant in the api adapter.
 * Clean  all gem configurations into separate support files, not just vcr and factory_bot
 * Correct folder structure so external api files and kept outside of api directory
 * omdb api adapter could be made into a class rather than a module [DONE]
-* Move logging away from the api_adapter and into a create movie unit/service? Api Adapter may have too many responsibilities right now. 
+* Move logging away from the api_adapter and into a create movie unit/service? Api Adapter may have too many responsibilities right now. [DONE]
