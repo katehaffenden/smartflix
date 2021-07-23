@@ -7,12 +7,7 @@ module Omdb
   class ApiAdapter
     def fetch_data(title = nil)
       title = movie_title if title.nil?
-      response = HTTParty.get("http://www.omdbapi.com/?t=#{title}&apikey=#{omdb_key}")
-      if response.body.include?('False')
-        Rails.logger.warn "#{title} returned an error in the response"
-      else
-        response.parsed_response
-      end
+      HTTParty.get("http://www.omdbapi.com/?t=#{title}&apikey=#{omdb_key}")
     end
 
     def movie_title
