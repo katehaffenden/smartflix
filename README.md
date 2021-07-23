@@ -2,7 +2,12 @@
 
 ### Description ###
 
-Smartflix is a practice project to experiment with Ruby and Rails. The project currently uses the OMDB API to fetch information for films which it then adds to the database. The information can then be accessed and manipulated via the app. At the moment the project consists of a movie model, controller adapter to interact with the OMDB api and a sidekiq worker.   
+Smartflix is a practice project to experiment with Ruby and Rails. The project currently uses the OMDB API to fetch information on movies which it then adds to a database. The information can then be accessed and manipulated via the app. At the moment the project consists of:
+ * a movie model
+ * a movie controller
+ * a sidekiq worker that handles the async handoff to the create movie unit
+ * an adapter for the omdb_api
+ * a create movie unit which handles the creation of a movie
 
 ### Setup ###
 
