@@ -18,7 +18,7 @@ module CreateMovie
     end
 
     def log_warning
-      Rails.logger.warn 'Request returned an error in the response'
+      Rails.logger.warn "#{Time.current} Request returned an error in the response"
     end
 
     def prepare_movie_attributes(response)
