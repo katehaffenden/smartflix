@@ -16,18 +16,18 @@ RSpec.describe Omdb::ApiAdapter do
       end
     end
 
-      context 'when title is supplied' do
-        let(:title) { 'The Godfather' }
+    context 'when title is supplied' do
+      let(:title) { 'The Godfather' }
 
-        it 'makes a request returning an HTTP response' do
-          VCR.use_cassette 'movie_request_the_godfather' do
-            response = subject.fetch_data(title)
-            expect(response).to be_a_kind_of HTTParty::Response
-            expect(response['Title']).to eq('The Godfather')
-          end
+      it 'makes a request returning an HTTP response' do
+        VCR.use_cassette 'movie_request_the_godfather' do
+          response = subject.fetch_data(title)
+          expect(response).to be_a_kind_of HTTParty::Response
+          expect(response['Title']).to eq('The Godfather')
         end
       end
     end
+  end
 
   describe '#movie_title' do
     subject { described_class.new.movie_title }
