@@ -37,11 +37,11 @@ RSpec.describe CreateMovie::Action do
     end
 
     it 'does not create a movie object' do
-      expect { subject }.to_not change(Movie, :count)
+      expect { subject }.not_to change(Movie, :count)
     end
 
     it 'logs a timestamped warning' do
-      travel_to Time.local(2020)
+      travel_to Time.zone.local(2020)
       expect(Rails.logger).to receive(:warn).with("#{Time.current} Request returned an error in the response")
       subject
       travel_back

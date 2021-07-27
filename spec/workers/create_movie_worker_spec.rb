@@ -8,7 +8,7 @@ RSpec.describe CreateMovieWorker do
 
     let(:title) { 'Some+Like+It+Hot' }
     let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
-    let(:response) {instance_double(HTTParty::Response, body: response_body)}
+    let(:response) { instance_double(HTTParty::Response, body: response_body) }
     let(:response_body) do
       { 'Title' => 'Some Like It Hot', 'Year' => '1959', 'Rated' => 'Passed',
         'Released' => '19 Mar 1959', 'Runtime' => '121 min',
