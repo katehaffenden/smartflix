@@ -11,6 +11,8 @@ module CreateMovie
       end
     end
 
+    EXCLUDED_ATTRIBUTES = %i[director actors awards poster country ratings writer type dvd boxoffice production metascore response imdbrating imdbvotes imdbid website]
+
     private
 
     def valid?(response)
@@ -22,8 +24,9 @@ module CreateMovie
     end
 
     def prepare_movie_attributes(response)
-      response.transform_keys! { |k| k.downcase.to_sym }
-    end
+      response = response.transform_keys! { |k| k.downcase.to_sym }
+      response.except!(*EXCLUDED_ATTRIBUTES)
+      end
 
     def create_movie(movie_attributes)
       Movie.create(title: movie_attributes[:title],

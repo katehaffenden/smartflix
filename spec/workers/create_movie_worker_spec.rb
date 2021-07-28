@@ -21,8 +21,10 @@ RSpec.describe CreateMovieWorker do
       allow(response).to receive(:parsed_response).and_return(response_body)
     end
 
-    it 'instantiates a CreateMovie::EntryPoint object' do
-      expect(subject.perform(title)).to be_kind_of(CreateMovie::EntryPoint)
+    it 'calls CreateMovie::EntryPoint' do
+      expect(CreateMovie::EntryPoint).to receive(:new)
+
+      subject.perform(title)
     end
 
     it 'creates a movie' do

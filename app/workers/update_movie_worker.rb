@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require 'sidekiq-scheduler'
 
 class UpdateMovieWorker
@@ -8,10 +7,10 @@ class UpdateMovieWorker
   sidekiq_options queue: :movies, retry: false
 
   def perform
-    movies = Movie.all.select(:title)
+    movies = Movie.all
     movies.each do |movie|
       response = omdb_adapter.fetch_data(movie.title)
-      UpdateMovie::EntryPoint.call(response, movie)
+      UpdateMovie::EntryPoint.new(response, movie)
     end
   end
 
