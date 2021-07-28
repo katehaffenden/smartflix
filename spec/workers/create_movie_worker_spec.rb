@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe CreateMovieWorker do
-  describe '#perform' do
     subject { described_class.new }
 
     let(:title) { 'Some+Like+It+Hot' }
@@ -30,5 +29,4 @@ RSpec.describe CreateMovieWorker do
     it 'creates a movie' do
       expect { subject.perform(title) }.to change(Movie, :count).by(1)
     end
-  end
 end
