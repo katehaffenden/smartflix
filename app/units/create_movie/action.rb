@@ -12,6 +12,7 @@ module CreateMovie
     end
 
     EXCLUDED_ATTRIBUTES = %i[director actors awards poster country ratings writer type dvd boxoffice production metascore response imdbrating imdbvotes imdbid website]
+    private_constant :EXCLUDED_ATTRIBUTES
 
     private
 
