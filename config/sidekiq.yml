@@ -3,7 +3,10 @@
   :queues:
     - movies
     - default
-  :schedue:
+  :schedule:
       update_movie_worker:
           cron: '00 07 * * *'
           class: UpdateMovieWorker
+      destroy_movie_worker:
+          cron: '00 08 * * *'
+          class: DestroyMovieWorker

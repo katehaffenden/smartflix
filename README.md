@@ -26,6 +26,7 @@ In the root directory run the following command to run all tests:
 * Correct folder structure so external api files and kept outside of api directory
 * omdb api adapter could be made into a class rather than a module [DONE]
 * Move logging away from the api_adapter and into a create movie unit/service? Api Adapter may have too many responsibilities right now. [DONE]
-* Instead of having the update movie unit inherit from create movie action there could be a base action that both of the individual actions in each unit inherit from. To avoid repetition
+* Instead of having the update movie unit inherit from create movie action there could be a base action that both of the individual actions in each unit inherit from. To avoid repetition [DONE]
 * Equally both workers could access omdb adapter via dry mixin containers/ dependencies rather than repeated private methods.
 * Use cassettes in entry_point specs so they are more like integration tests and not repetitive unit tests
+* Remove repetitive tests in destroy movie unit
