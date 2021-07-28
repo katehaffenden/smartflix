@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UpdateMovie
-  class Action < CreateMovie::Action
+  class Action < CreateMovie::Base
     def call(response, movie)
       if valid?(response)
         movie_attributes = prepare_movie_attributes(response.parsed_response)
