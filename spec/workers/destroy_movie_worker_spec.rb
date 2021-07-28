@@ -16,26 +16,24 @@ RSpec.describe DestroyMovieWorker do
   context 'when a movie has not been updated in 48 hours' do
     let!(:movie_updated) { create(:movie, updated_at: 72.hours.ago) }
 
-      it 'calls DestroyMovie::EntryPoint' do
-        expect(DestroyMovie::EntryPoint).to receive(:new)
+    it 'calls DestroyMovie::EntryPoint' do
+      expect(DestroyMovie::EntryPoint).to receive(:new)
 
-        subject.perform
-      end
+      subject.perform
+    end
 
-      it 'does delete a movie from the database' do
-        expect { subject.perform }.to change(Movie, :count).by(-1)
-      end
+    it 'does delete a movie from the database' do
+      expect { subject.perform }.to change(Movie, :count).by(-1)
+    end
   end
 
   context 'when a movie has been updated in the last 48 hours' do
     let!(:movie_not_updated) { create(:movie, updated_at: 12.hours.ago) }
 
     it 'does not call the DestroyMovie::EntryPoint' do
-      expect(DestroyMovie::EntryPoint).to_not receive(:new)
+      expect(DestroyMovie::EntryPoint).not_to receive(:new)
 
       subject.perform
     end
   end
-
-
 end

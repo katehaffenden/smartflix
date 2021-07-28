@@ -7,8 +7,7 @@ RSpec.describe DestroyMovie::Action do
 
   let!(:movie) { create(:movie) }
 
-    it 'deletes a movie to the database' do
-      expect { subject }.to change(Movie, :count).by(-1)
-    end
-
+  it 'deletes a movie to the database' do
+    expect { subject }.to change(Movie, :count).by(-1)
+  end
 end

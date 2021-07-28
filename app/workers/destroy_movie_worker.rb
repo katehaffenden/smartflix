@@ -13,5 +13,4 @@ class DestroyMovieWorker
       DestroyMovie::EntryPoint.new(movie)
     end
   end
-
 end
