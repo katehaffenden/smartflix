@@ -37,3 +37,4 @@ In the root directory run the following command to run all tests:
 * Equally both workers could access omdb adapter via dry mixin containers/ dependencies rather than repeated private methods.
 * Use cassettes in entry_point specs so they are more like integration tests and not repetitive unit tests
 * Remove repetitive tests in destroy movie unit
+* Check efficiency in fetching all movies in update_movie_worker (providing movie ids for batch updates like in api for updating large sets of data)
