@@ -42,9 +42,9 @@ RSpec.describe CreateMovie::Action do
 
     it 'logs a timestamped warning' do
       travel_to Time.zone.local(2020)
-      expect(Rails.logger).to receive(:warn).with("#{Time.current} Request returned an error in the response")
+      expect(Rails.logger).to receive(:warn).with("2020-01-01 00:00:00 UTC Request returned an error in the response")
+
       subject
-      travel_back
     end
   end
 end
