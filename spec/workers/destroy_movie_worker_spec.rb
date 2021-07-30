@@ -6,15 +6,14 @@ RSpec.describe DestroyMovieWorker do
   subject { described_class.new }
 
   before do
-    travel_to Time.zone.local(2021)
-  end
-
-  after do
-    travel_back
+    freeze_time
   end
 
   context 'when a movie has not been updated in 48 hours' do
-    let!(:movie_updated) { create(:movie, updated_at: 72.hours.ago) }
+
+    before do
+      create(:movie, title: 'Jaws', updated_at: 72.hours.ago)
+    end
 
     it 'calls DestroyMovie::EntryPoint' do
       expect(DestroyMovie::EntryPoint).to receive(:new)
@@ -22,13 +21,16 @@ RSpec.describe DestroyMovieWorker do
       subject.perform
     end
 
-    it 'does delete a movie from the database' do
+    it 'deletes the movie from the database' do
       expect { subject.perform }.to change(Movie, :count).by(-1)
     end
   end
 
   context 'when a movie has been updated in the last 48 hours' do
-    let!(:movie_not_updated) { create(:movie, updated_at: 12.hours.ago) }
+
+    before do
+      create(:movie, title: 'Toy Story', updated_at: 12.hours.ago)
+    end
 
     it 'does not call the DestroyMovie::EntryPoint' do
       expect(DestroyMovie::EntryPoint).not_to receive(:new)
