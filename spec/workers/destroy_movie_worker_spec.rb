@@ -10,7 +10,6 @@ RSpec.describe DestroyMovieWorker do
   end
 
   context 'when a movie has not been updated in 48 hours' do
-
     before do
       create(:movie, title: 'Jaws', updated_at: 72.hours.ago)
     end
@@ -27,7 +26,6 @@ RSpec.describe DestroyMovieWorker do
   end
 
   context 'when a movie has been updated in the last 48 hours' do
-
     before do
       create(:movie, title: 'Toy Story', updated_at: 12.hours.ago)
     end
