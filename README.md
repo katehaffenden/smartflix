@@ -29,7 +29,7 @@ In the root directory run the following command to run all tests:
 
 ### Possible improvements ###
 
-* Clean  all gem configurations into separate support files, not just vcr and factory_bot
+* Clean all gem configurations into separate support files, not just vcr and factory_bot
 * Correct folder structure so external api files and kept outside of api directory
 * omdb api adapter could be made into a class rather than a module [DONE]
 * Move logging away from the api_adapter and into a create movie unit/service? Api Adapter may have too many responsibilities right now. [DONE]
@@ -37,4 +37,5 @@ In the root directory run the following command to run all tests:
 * Equally both workers could access omdb adapter via dry mixin containers/ dependencies rather than repeated private methods.
 * Use cassettes in entry_point specs so they are more like integration tests and not repetitive unit tests
 * Remove repetitive tests in destroy movie unit
+* touch method to overcome the reliance on updated_at to check a movie has been updated
 * Check efficiency in fetching all movies in update_movie_worker (providing movie ids for batch updates like in api for updating large sets of data)
