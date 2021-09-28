@@ -7,7 +7,7 @@ class CreateMovieWorker
 
   def perform(title)
     response = omdb_adapter.fetch_data(title)
-    CreateMovie::EntryPoint.new(response)
+    CreateMovie::EntryPoint.new(response).call
   end
 
   private
