@@ -2,7 +2,6 @@
 
 module DestroyMovie
   class EntryPoint
-
     include ::EntryPoint
 
     def initialize

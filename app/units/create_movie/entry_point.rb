@@ -2,7 +2,6 @@
 
 module CreateMovie
   class EntryPoint
-
     include ::EntryPoint
 
     def initialize
