@@ -5,7 +5,7 @@ RSpec.describe Omdb::ApiAdapter do
     context 'when no title parameter is supplied' do
       subject { described_class.new }
 
-      it 'makes a request returning an HTTP response' do
+      it 'makes a request returning an HTTP response', :aggregate_failures do
         allow(described_class.new).to receive(:movie_title).and_return('Some+Like+It+Hot')
 
         VCR.use_cassette 'movie_request_some_like_it_hot' do
@@ -19,7 +19,7 @@ RSpec.describe Omdb::ApiAdapter do
     context 'when title is supplied' do
       let(:title) { 'The Godfather' }
 
-      it 'makes a request returning an HTTP response' do
+      it 'makes a request returning an HTTP response', :aggregate_failures do
         VCR.use_cassette 'movie_request_the_godfather' do
           response = subject.fetch_data(title)
           expect(response).to be_a_kind_of HTTParty::Response
