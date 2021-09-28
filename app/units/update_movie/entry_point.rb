@@ -2,7 +2,6 @@
 
 module UpdateMovie
   class EntryPoint
-
     include ::EntryPoint
 
     def initialize
