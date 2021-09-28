@@ -10,7 +10,7 @@ class DestroyMovieWorker
   def perform
     movies = Movie.where('updated_at < ?', 2.days.ago)
     movies.each do |movie|
-      DestroyMovie::EntryPoint.new(movie)
+      DestroyMovie::EntryPoint.new.call(movie)
     end
   end
 end

@@ -2,13 +2,11 @@
 
 module CreateMovie
   class EntryPoint
-    def initialize(response)
-      @action = CreateMovie::Action.new
-      @response = response
-    end
 
-    def call
-      @action.call(@response)
+    include ::EntryPoint
+
+    def initialize
+      @action = CreateMovie::Action.new
     end
   end
 end

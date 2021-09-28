@@ -2,8 +2,11 @@
 
 module DestroyMovie
   class EntryPoint
-    def initialize(movie)
-      @action = DestroyMovie::Action.new.call(movie)
+
+    include ::EntryPoint
+
+    def initialize
+      @action = DestroyMovie::Action.new
     end
   end
 end

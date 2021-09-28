@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateMovie::EntryPoint do
-  subject { described_class.new(response, movie) }
+  subject { described_class.new.call(response, movie) }
 
   let(:response) do
     instance_double(HTTParty::Response, body: response_body)

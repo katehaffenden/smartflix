@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DestroyMovie::EntryPoint do
-  subject { described_class.new(movie) }
+  subject { described_class.new.call(movie) }
 
   let!(:movie) { create(:movie) }
 

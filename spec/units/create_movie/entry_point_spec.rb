@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CreateMovie::EntryPoint do
-  subject { described_class.new(response).call }
+  subject { described_class.new.call(response) }
 
   let(:response) do
     instance_double(HTTParty::Response, body: response_body)

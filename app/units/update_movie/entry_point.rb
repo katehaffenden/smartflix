@@ -2,8 +2,11 @@
 
 module UpdateMovie
   class EntryPoint
-    def initialize(response, movie)
-      @action = UpdateMovie::Action.new.call(response, movie)
+
+    include ::EntryPoint
+
+    def initialize
+      @action = UpdateMovie::Action.new
     end
   end
 end
