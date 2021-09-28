@@ -18,11 +18,6 @@ RSpec.describe UpdateMovieWorker do
     allow(response).to receive(:parsed_response).and_return(response_body)
   end
 
-  it 'updates the movie record' do
-    subject.perform
-    expect(movie.reload).to have_attributes(runtime: '300 min', year: 1975, rated: 'Passed', genre: 'Comedy')
-  end
-
   it 'calls the UpdateMovie::EntryPoint' do
     expect(UpdateMovie::EntryPoint).to receive(:new).and_call_original
 
