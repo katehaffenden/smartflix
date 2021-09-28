@@ -21,12 +21,8 @@ RSpec.describe CreateMovieWorker do
   end
 
   it 'calls CreateMovie::EntryPoint' do
-    expect(CreateMovie::EntryPoint).to receive(:new)
+    expect(CreateMovie::EntryPoint).to receive(:new).and_call_original
 
     subject.perform(title)
-  end
-
-  it 'creates a movie' do
-    expect { subject.perform(title) }.to change(Movie, :count).by(1)
   end
 end

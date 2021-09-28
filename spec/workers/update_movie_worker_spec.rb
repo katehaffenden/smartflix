@@ -24,7 +24,7 @@ RSpec.describe UpdateMovieWorker do
   end
 
   it 'calls the UpdateMovie::EntryPoint' do
-    expect(UpdateMovie::EntryPoint).to receive(:new)
+    expect(UpdateMovie::EntryPoint).to receive(:new).and_call_original
 
     subject.perform
   end

@@ -15,13 +15,9 @@ RSpec.describe DestroyMovieWorker do
     end
 
     it 'calls DestroyMovie::EntryPoint' do
-      expect(DestroyMovie::EntryPoint).to receive(:new)
+      expect(DestroyMovie::EntryPoint).to receive(:new).and_call_original
 
       subject.perform
-    end
-
-    it 'deletes the movie from the database' do
-      expect { subject.perform }.to change(Movie, :count).by(-1)
     end
   end
 
