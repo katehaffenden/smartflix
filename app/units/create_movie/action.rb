@@ -12,7 +12,7 @@ module CreateMovie
     end
 
     def create_movie(movie_attributes)
-      Movie.create(title: movie_attributes[:title],
+      Movie.create!(title: movie_attributes[:title],
                    year: movie_attributes[:year].to_i,
                    rated: movie_attributes[:rated],
                    released: movie_attributes[:released].to_datetime,
