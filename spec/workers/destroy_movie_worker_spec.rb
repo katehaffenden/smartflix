@@ -25,7 +25,7 @@ RSpec.describe DestroyMovieWorker do
     end
 
     it 'does not destroy the movie' do
-      expect { subject.perform }.to change(Movie, :count).by(0)
+      expect { subject.perform }.to_not change(Movie, :count)
     end
   end
 end
