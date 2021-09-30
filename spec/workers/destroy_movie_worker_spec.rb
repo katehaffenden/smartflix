@@ -14,10 +14,8 @@ RSpec.describe DestroyMovieWorker do
       create(:movie, title: 'Jaws', updated_at: 72.hours.ago)
     end
 
-    it 'calls DestroyMovie::EntryPoint' do
-      expect(DestroyMovie::EntryPoint).to receive(:new).and_call_original
-
-      subject.perform
+    it 'destroys the movie' do
+      expect { subject.perform }.to change(Movie, :count).by(-1)
     end
   end
 
@@ -26,10 +24,8 @@ RSpec.describe DestroyMovieWorker do
       create(:movie, title: 'Toy Story', updated_at: 12.hours.ago)
     end
 
-    it 'does not call the DestroyMovie::EntryPoint' do
-      expect(DestroyMovie::EntryPoint).not_to receive(:new)
-
-      subject.perform
+    it 'does not destroy the movie' do
+      expect { subject.perform }.to change(Movie, :count).by(0)
     end
   end
 end

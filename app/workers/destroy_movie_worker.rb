@@ -8,9 +8,6 @@ class DestroyMovieWorker
   sidekiq_options queue: :movies, retry: false
 
   def perform
-    movies = Movie.where('updated_at < ?', 2.days.ago)
-    movies.each do |movie|
-      DestroyMovie::EntryPoint.new.call(movie)
-    end
+    Movie.outdated.destroy_all
   end
 end
