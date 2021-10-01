@@ -1,8 +1,9 @@
 # frozen_string_literal: true
-
+#
 module UpdateMovie
   class Action < ::BaseAction
-    def call(response, movie)
+    def call(movie)
+      response = omdb_adapter.get_movie(movie.title)
       if invalid?(response)
         log_warning
       else
@@ -11,7 +12,13 @@ module UpdateMovie
       end
     end
 
+    attr_reader :omdb_adapter
+
     private
+
+    def omdb_adapter
+      @omdb_adapter = Omdb::ApiAdapter.new
+    end
 
     def update_movie(attributes, movie)
       movie.update!(attributes)

@@ -5,22 +5,13 @@ require 'rails_helper'
 RSpec.describe UpdateMovieWorker do
   subject { described_class.new }
 
-  let!(:movie) { create(:movie, title: 'Jaws') }
-  let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
-  let(:response) { instance_double(HTTParty::Response, body: response_body) }
-  let(:response_body) do
-    { 'Title' => 'Jaws', 'Year' => '1975', 'Rated' => 'Passed', 'Runtime' => '300 min', 'Genre' => 'Comedy' }
-  end
+  let!(:movie) { create(:movie, title: 'The Godfather', year: 1971) }
 
-  before do
-    allow(subject).to receive(:omdb_adapter).and_return(fake_omdb_adapter)
-    allow(fake_omdb_adapter).to receive(:get_movie).and_return(response)
-    allow(response).to receive(:parsed_response).and_return(response_body)
-  end
+  it 'updates the movie' do
+    VCR.use_cassette 'movie_request_the_godfather' do
+        subject.perform
 
-  it 'calls the UpdateMovie::EntryPoint' do
-    expect(UpdateMovie::EntryPoint).to receive(:new).and_call_original
-
-    subject.perform
+       expect(movie.reload).to have_attributes(year: 1972, genre: 'Crime, Drama')
+     end
   end
 end

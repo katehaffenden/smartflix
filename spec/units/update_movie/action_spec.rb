@@ -3,13 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe UpdateMovie::Action do
-  subject { described_class.new.call(response, movie) }
+  subject { described_class.new }
 
-  let(:response) do
-    instance_double(HTTParty::Response, body: response_body)
+  let!(:movie) { create(:movie, title: 'Jaws') }
+
+  let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
+  let(:response) { instance_double(HTTParty::Response, body: response_body) }
+  let(:response_body) do
+    { 'Title' => 'Jaws', 'Year' => '1975', 'Rated' => 'Passed', 'Runtime' => '300 min', 'Genre' => 'Comedy' }
   end
 
   before do
+    allow(subject).to receive(:omdb_adapter).and_return(fake_omdb_adapter)
+    allow(fake_omdb_adapter).to receive(:get_movie).and_return(response)
     allow(response).to receive(:parsed_response).and_return(response_body)
   end
 
@@ -20,11 +26,11 @@ RSpec.describe UpdateMovie::Action do
     let(:movie) { create(:movie, title: 'Jaws', genre: 'Adventure', year: '1960') }
 
     it 'updates the movie object' do
-      expect { subject }.to change(movie, :updated_at)
+      expect { subject.call(movie) }.to change(movie, :updated_at)
     end
 
     it 'updates movie with attributes from the response' do
-      subject
+      subject.call(movie)
       expect(movie.reload).to have_attributes(title: 'Jaws', year: 1975, genre: 'Comedy')
     end
   end
@@ -36,11 +42,11 @@ RSpec.describe UpdateMovie::Action do
     let(:movie) { create(:movie, title: 'Jaws', genre: 'Adventure') }
 
     it ' does not update the movie object' do
-      expect { subject }.not_to change(movie, :updated_at)
+      expect { subject.call(movie) }.not_to change(movie, :updated_at)
     end
 
     it 'updates movie with attributes from the response' do
-      subject
+      subject.call(movie)
       expect(movie.reload).to have_attributes(title: 'Jaws', genre: 'Adventure')
     end
   end
