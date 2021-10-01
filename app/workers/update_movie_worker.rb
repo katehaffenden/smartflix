@@ -10,7 +10,7 @@ class UpdateMovieWorker
   def perform
     movies = Movie.all
     movies.each do |movie|
-      response = omdb_adapter.fetch_data(movie.title)
+      response = omdb_adapter.get_movie(movie.title)
       UpdateMovie::EntryPoint.new.call(response, movie)
     end
   end

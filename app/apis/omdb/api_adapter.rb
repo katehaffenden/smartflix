@@ -5,7 +5,7 @@ require 'httparty'
 
 module Omdb
   class ApiAdapter
-    def fetch_data(title = nil)
+    def get_movie(title = nil)
       title = movie_title if title.nil?
       HTTParty.get("#{base_url}?t=#{title}&apikey=#{omdb_key}")
     end

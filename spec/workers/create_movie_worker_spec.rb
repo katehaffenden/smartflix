@@ -16,7 +16,7 @@ RSpec.describe CreateMovieWorker do
 
   before do
     allow(subject).to receive(:omdb_adapter).and_return(fake_omdb_adapter)
-    allow(fake_omdb_adapter).to receive(:fetch_data).and_return(response)
+    allow(fake_omdb_adapter).to receive(:get_movie).and_return(response)
     allow(response).to receive(:parsed_response).and_return(response_body)
   end
 
