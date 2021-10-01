@@ -2,7 +2,7 @@
 
 
 module CreateMovie
-  class Action < ::Base
+  class Action < ::BaseAction
     def call(response)
       if invalid?(response)
         log_warning

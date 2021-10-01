@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-  class Base
+  class BaseAction
     EXCLUDED_ATTRIBUTES = %i[director actors awards poster country ratings writer type dvd boxoffice production
                              metascore response imdbrating imdbvotes imdbid website].freeze
     private_constant :EXCLUDED_ATTRIBUTES
