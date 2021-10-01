@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UpdateMovie
-  class Action < CreateMovie::Base
+  class Action < ::Base
     def call(response, movie)
       if invalid?(response)
         log_warning

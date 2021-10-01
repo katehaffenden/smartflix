@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-module CreateMovie
   class Base
     EXCLUDED_ATTRIBUTES = %i[director actors awards poster country ratings writer type dvd boxoffice production
                              metascore response imdbrating imdbvotes imdbid website].freeze
@@ -21,4 +20,3 @@ module CreateMovie
       response.except!(*EXCLUDED_ATTRIBUTES)
     end
   end
-end
