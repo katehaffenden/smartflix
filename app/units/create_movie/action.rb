@@ -4,11 +4,11 @@
 module CreateMovie
   class Action < CreateMovie::Base
     def call(response)
-      if valid?(response)
+      if invalid?(response)
+        log_warning
+      else
         movie_attributes = prepare_movie_attributes(response.parsed_response)
         create_movie(movie_attributes)
-      else
-        log_warning
       end
     end
 

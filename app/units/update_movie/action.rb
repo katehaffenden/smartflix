@@ -3,11 +3,11 @@
 module UpdateMovie
   class Action < CreateMovie::Base
     def call(response, movie)
-      if valid?(response)
+      if invalid?(response)
+        log_warning
+      else
         movie_attributes = prepare_movie_attributes(response.parsed_response)
         update_movie(movie_attributes, movie)
-      else
-        log_warning
       end
     end
 

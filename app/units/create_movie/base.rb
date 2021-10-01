@@ -8,8 +8,8 @@ module CreateMovie
 
     private
 
-    def valid?(response)
-      !response.body.include?('False')
+    def invalid?(response)
+      response.body.include?('False')
     end
 
     def log_warning
