@@ -18,6 +18,6 @@ class UpdateMovieWorker
   private
 
   def omdb_adapter
-    @omdb_adapter ||= Omdb::ApiAdapter.new
+    @omdb_adapter = Omdb::ApiAdapter.new
   end
 end
