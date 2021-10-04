@@ -15,9 +15,5 @@ VCR.configure do |c|
   c.ignore_localhost = true
   c.default_cassette_options = { record: :once,
                                  match_requests_on: [:body, :host, :method]}
-  # ChromeDriver will make requests to chromedriver.storage.googleapis.com
-  # to (I believe) check for updates. These requests will just show up as
-  # noise in our cassettes unless we tell VCR to ignore these requests.
-  c.ignore_hosts 'chromedriver.storage.googleapis.com'
   c.filter_sensitive_data('apikey') { ENV['OMDB_KEY'] }
 end
