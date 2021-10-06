@@ -7,17 +7,15 @@ RSpec.describe CreateMovie::Action do
 
   let(:title) { 'Some+Like+It+Hot' }
   let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
-  let(:response) { instance_double(HTTParty::Response, body: response_body) }
   let(:response_body) do
-    { 'Title' => 'Some Like It Hot', 'Year' => '1959', 'Rated' => 'Passed',
-      'Released' => '19 Mar 1959', 'Runtime' => '121 min',
-      'Plot' => 'Plot summary goes here', 'Genre' => 'Comedy' }
+    {:title=>"Some Like It Hot", :year=>"1959", :rated=>"Passed", :released=>"19 Mar 1959", :runtime=>"121 min",
+     :genre=>"Comedy, Music, Romance",:plot=>"After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in.",
+     :language=>"English", :response=>"True"}
   end
 
   before do
     allow(subject).to receive(:omdb_adapter).and_return(fake_omdb_adapter)
-    allow(fake_omdb_adapter).to receive(:get_movie).and_return(response)
-    allow(response).to receive(:parsed_response).and_return(response_body)
+    allow(fake_omdb_adapter).to receive(:get_movie).and_return(response_body)
   end
 
   context 'when provided with a valid response' do
@@ -28,7 +26,7 @@ RSpec.describe CreateMovie::Action do
 
   context 'when provided with an invalid response' do
     let(:response_body) do
-      '{"Response":"False","Error":"Movie not found!"}'
+      {:response=>"False"}
     end
 
     it 'does not create a movie object' do

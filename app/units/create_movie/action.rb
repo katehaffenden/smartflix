@@ -4,12 +4,11 @@
 module CreateMovie
   class Action < ::BaseAction
     def call(title)
-      response = omdb_adapter.get_movie(title)
-      if invalid?(response)
+      movie_data = omdb_adapter.get_movie(title)
+      if invalid?(movie_data)
         log_warning
       else
-        movie_attributes = prepare_movie_attributes(response.parsed_response)
-        create_movie(movie_attributes)
+        create_movie(movie_data)
       end
     end
 
@@ -17,15 +16,15 @@ module CreateMovie
 
     private
 
-    def create_movie(movie_attributes)
-      Movie.create!(title: movie_attributes[:title],
-                   year: movie_attributes[:year].to_i,
-                   rated: movie_attributes[:rated],
-                   released: movie_attributes[:released].to_datetime,
-                   genre: movie_attributes[:genre],
-                   plot: movie_attributes[:plot],
-                   runtime: movie_attributes[:runtime],
-                   language: movie_attributes[:language])
+    def create_movie(movie_data)
+      Movie.create!(title: movie_data[:title],
+                   year: movie_data[:year].to_i,
+                   rated: movie_data[:rated],
+                   released: movie_data[:released].to_datetime,
+                   genre: movie_data[:genre],
+                   plot: movie_data[:plot],
+                   runtime: movie_data[:runtime],
+                   language: movie_data[:language])
     end
 
     def omdb_adapter
