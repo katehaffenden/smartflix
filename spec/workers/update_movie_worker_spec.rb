@@ -9,9 +9,9 @@ RSpec.describe UpdateMovieWorker do
 
   it 'updates the movie' do
     VCR.use_cassette 'movie_request_the_godfather' do
-        subject.perform
+      subject.perform
 
-       expect(movie.reload).to have_attributes(year: 1972, genre: 'Crime, Drama')
-     end
+      expect(movie.reload).to have_attributes(year: 1972, genre: 'Crime, Drama')
+    end
   end
 end

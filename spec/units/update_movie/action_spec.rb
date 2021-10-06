@@ -10,7 +10,8 @@ RSpec.describe UpdateMovie::Action do
   let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
   let(:response) { instance_double(HTTParty::Response, body: response_body) }
   let(:response_body) do
-    {:title=>"Jaws", :year=>"1975", :rated=>"Passed", :runtime=>"300 min", :genre=>"Comedy", :response=>"True"}
+    { title: 'Jaws', year: '1975', rated: 'Passed', runtime: '300 min', genre: 'Comedy',
+      response: 'True' }
   end
 
   before do
@@ -20,7 +21,7 @@ RSpec.describe UpdateMovie::Action do
 
   context 'when provided with new data in the response' do
     let(:response_body) do
-      { :title => 'Jaws', :genre => 'Comedy', :year => '1975' }
+      { title: 'Jaws', genre: 'Comedy', year: '1975' }
     end
     let(:movie) { create(:movie, title: 'Jaws', genre: 'Adventure', year: '1960') }
 
@@ -36,7 +37,7 @@ RSpec.describe UpdateMovie::Action do
 
   context 'when provided with no new data in the response' do
     let(:response_body) do
-      { :title => 'Jaws', :genre => 'Adventure' }
+      { title: 'Jaws', genre: 'Adventure' }
     end
     let(:movie) { create(:movie, title: 'Jaws', genre: 'Adventure') }
 

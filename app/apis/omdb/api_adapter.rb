@@ -5,9 +5,8 @@ require 'httparty'
 
 module Omdb
   class ApiAdapter
-
     EXCLUDED_ATTRIBUTES = %i[director actors awards poster country ratings writer type dvd boxoffice production
-                           metascore imdbrating imdbvotes imdbid website].freeze
+                             metascore imdbrating imdbvotes imdbid website].freeze
     private_constant :EXCLUDED_ATTRIBUTES
 
     def get_movie(title = nil)

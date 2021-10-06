@@ -8,9 +8,9 @@ RSpec.describe CreateMovie::Action do
   let(:title) { 'Some+Like+It+Hot' }
   let(:fake_omdb_adapter) { instance_double(Omdb::ApiAdapter) }
   let(:response_body) do
-    {:title=>"Some Like It Hot", :year=>"1959", :rated=>"Passed", :released=>"19 Mar 1959", :runtime=>"121 min",
-     :genre=>"Comedy, Music, Romance",:plot=>"After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in.",
-     :language=>"English", :response=>"True"}
+    { title: 'Some Like It Hot', year: '1959', rated: 'Passed', released: '19 Mar 1959', runtime: '121 min',
+      genre: 'Comedy, Music, Romance', plot: 'After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in.',
+      language: 'English', response: 'True' }
   end
 
   before do
@@ -26,7 +26,7 @@ RSpec.describe CreateMovie::Action do
 
   context 'when provided with an invalid response' do
     let(:response_body) do
-      {:response=>"False"}
+      { response: 'False' }
     end
 
     it 'does not create a movie object' do
