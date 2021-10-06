@@ -16,14 +16,7 @@ module CreateMovie
     private
 
     def create_movie(movie_data)
-      Movie.create!(title: movie_data[:title],
-                    year: movie_data[:year].to_i,
-                    rated: movie_data[:rated],
-                    released: movie_data[:released].to_datetime,
-                    genre: movie_data[:genre],
-                    plot: movie_data[:plot],
-                    runtime: movie_data[:runtime],
-                    language: movie_data[:language])
+      Movie.create!(movie_data.except(:response))
     end
 
     def omdb_adapter
