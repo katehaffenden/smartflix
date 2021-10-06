@@ -8,8 +8,7 @@ class UpdateMovieWorker
   sidekiq_options queue: :movies, retry: false
 
   def perform
-    movies = Movie.all
-    movies.each do |movie|
+    Movie.find_each(batch_size: 10) do |movie|
       UpdateMovie::EntryPoint.new.call(movie)
     end
   end
