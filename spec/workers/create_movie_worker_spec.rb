@@ -7,9 +7,9 @@ RSpec.describe CreateMovieWorker do
 
   let(:title) { 'Some+Like+It+Hot' }
 
-  it 'adds a movie record to the database' do
-    VCR.use_cassette 'movie_request_some_like_it_hot' do
-      expect { subject.perform(title) }.to change(Movie, :count).by(1)
-    end
+  it 'calls CreateMovie::EntryPoint with a movie title' do
+    expect_any_instance_of(CreateMovie::EntryPoint).to receive(:call).with(title)
+
+    subject.perform(title)
   end
 end
