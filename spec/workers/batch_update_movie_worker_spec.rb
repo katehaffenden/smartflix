@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UpdateMovieWorker do
+RSpec.describe BatchUpdateMovieWorker do
   subject { described_class.new }
 
   let!(:movie) { create(:movie, title: 'The Godfather', year: 1971) }

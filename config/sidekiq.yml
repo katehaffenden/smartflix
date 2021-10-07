@@ -4,9 +4,9 @@
     - movies
     - default
   :schedule:
-      update_movie_worker:
+      batch_update_movie_worker:
           cron: '00 07 * * *'
-          class: UpdateMovieWorker
+          class: BatchUpdateMovieWorker
       destroy_movie_worker:
           cron: '00 08 * * *'
           class: DestroyMovieWorker
