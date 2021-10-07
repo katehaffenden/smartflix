@@ -7,11 +7,9 @@ RSpec.describe BatchUpdateMovieWorker do
 
   let!(:movie) { create(:movie, title: 'The Godfather', year: 1971) }
 
-  it 'updates the movie' do
-    VCR.use_cassette 'movie_request_the_godfather' do
-      subject.perform
+  it 'sends a movie to the UpdateSingleMovieWorker' do
+    expect(UpdateSingleMovieWorker).to receive(:perform_async).with(movie)
 
-      expect(movie.reload).to have_attributes(year: 1972, genre: 'Crime, Drama')
-    end
+    subject.perform
   end
 end
