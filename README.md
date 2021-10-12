@@ -9,33 +9,42 @@ Smartflix is a practice project to experiment with Ruby and Rails. The project c
  * a create movie sidekiq worker that handles the async handoff to the create movie unit
  * a create movie unit which handles the creation of a movie
  * an update movie unit to update movies records that exist in the database
- * a destroy movie unit which destroys movie entries in the database
- * an update movie worker which runs everyday at 7am, making a call to the OMDB api for new data.
+ * a batch update movie worker which runs everyday at 7am making to update existing movies in the database
+ * a update single movie worker which takes a single movie and sends it to the update movie unit to be updated
  * a destroy movie worker which runs everyday at 8am, removing movies that have not been updated in 48 hours
  * specs for all of the above
 
 ### Setup ###
 
-To setup the app locally, clone the repo and run:
-``bundle``
-then
-``bin/setup rails/s`` to run the server. To see a movie listing visit the url: localhost:3000/movies/:title
+NOTE: the password for the database will need to be replaced in the `init.sql` file to a password of your choice before the application is built with docker. The password currently supplied to docker for the database's user includes a dummy reference to the POSTGRES_PASSWORD ENV variable. 
 
-``bundle exec sidekiq`` will run the sidekiq server so the scheduled workers can run
+To setup the app locally, clone the repo and run:
+``docker-compose build``
+then
+``docker-compose up`` to run the application.
+
+To setup the database when you boot the application run:
+
+``docker-compose run web rails db:create``
+
+``docker-compose run web rails db:migrate``
+
+To see a movie listing visit the url: `localhost:3000/movies/:title`
+
+To shut down the application:
+
+``docker-compose down``
 
 ### Tests ###
 In the root directory run the following command to run all tests:
 ``rspec``
 
-### Possible improvements ###
+### Improvements ###
 
-* Clean all gem configurations into separate support files, not just vcr and factory_bot
-* Correct folder structure so external api files and kept outside of api directory
-* omdb api adapter could be made into a class rather than a module [DONE]
-* Move logging away from the api_adapter and into a create movie unit/service? Api Adapter may have too many responsibilities right now. [DONE]
-* Instead of having the update movie unit inherit from create movie action there could be a base action that both of the individual actions in each unit inherit from. To avoid repetition [DONE]
-* Equally both workers could access omdb adapter via dry mixin containers/ dependencies rather than repeated private methods.
-* Use cassettes in entry_point specs so they are more like integration tests and not repetitive unit tests
-* Remove repetitive tests in destroy movie unit
-* touch method to overcome the reliance on updated_at to check a movie has been updated
-* Check efficiency in fetching all movies in update_movie_worker (providing movie ids for batch updates like in api for updating large sets of data)
+* Gem configurations have been moved into separate support files within the support folder.
+* Folder names have been updated to the plural.
+* Data formatting is handled in the api wrapper.
+* Base action has been moved to the unit folder.
+* Calls to the API were moved to the units.
+* Chosen a unit test approach for workers and units. Repetitive integration specs were removed. 
+* Batch and single update movie worker created to make the update process more efficient 
