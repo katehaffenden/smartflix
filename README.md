@@ -18,7 +18,7 @@ Smartflix is a practice project to experiment with Ruby and Rails. The project c
 
 NOTE: the password for the database will need to be replaced in the `init.sql` file to a password of your choice before the application is built with docker. The password currently supplied to docker for the database's user includes a dummy reference to the POSTGRES_PASSWORD ENV variable. 
 
-To setup the app locally, clone the repo and run:
+To setup the app locally, clone the repo, update the `init.sql` file and run:
 ``docker-compose build``
 then
 ``docker-compose up`` to run the application.
