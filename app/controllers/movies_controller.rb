@@ -10,4 +10,8 @@ class MoviesController < ApplicationController
       render json: { body: 'Movie not found, please try back later' }.to_json, status: :not_found
     end
   end
+
+  def index
+    @movies = Movie.all
+  end
 end
