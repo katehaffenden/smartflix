@@ -30,6 +30,7 @@ To setup the database when you boot the application run:
 ``docker-compose run web rails db:migrate``
 
 To see a movie listing visit the url: `localhost:3000/movies/:title`
+To view all movies visit `localhost:3000/movies`
 
 To shut down the application:
 
