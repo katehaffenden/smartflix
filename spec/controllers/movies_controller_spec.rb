@@ -24,4 +24,12 @@ RSpec.describe MoviesController do
       end
     end
   end
+
+  describe 'get #index' do
+    it 'returns ok status' do
+      get :index
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end
