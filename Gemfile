@@ -40,6 +40,7 @@ group :development,
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'httparty'
+  gem 'kaminari'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
