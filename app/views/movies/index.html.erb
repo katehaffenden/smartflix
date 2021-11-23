@@ -11,16 +11,8 @@
   </tr>
   </thead>
   <tbody>
-  <% @movies.each do |movie| %>
-  <tr>
-    <td><img src=<%= movie.poster %>, class="img-responsive", width="100px"></td>
-    <td><%= movie.title %></td>
-    <td><%= movie.plot %></td>
-    <td><%= movie.genre %></td>
-    <td><%= movie.year %></td>
-    <td><%= movie.runtime %></td>
-  </tr>
-    <% end %>
+    <%= render @movies %>
+    <%= paginate @movies %>
   </tbody>
 </table>
 </div>
