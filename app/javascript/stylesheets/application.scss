@@ -46,6 +46,12 @@ a:visited {
   background-color: $white;
   display: inline-block;
 }
+.pagination {
+  a {
+    color: $white;
+    padding: 5px;
+  }
+}
 img,
 video,
 audio {
