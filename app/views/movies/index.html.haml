@@ -1,0 +1,13 @@
+.container
+  %table.table.table-dark
+    %thead
+      %tr
+        %th{:scope => "col"} Poster
+        %th{:scope => "col"} Title
+        %th{:scope => "col"} Plot
+        %th{:scope => "col"} Genre
+        %th{:scope => "col"} Year
+        %th{:scope => "col"} Runtime
+    %tbody
+      = render @movies
+  = paginate @movies
