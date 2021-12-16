@@ -7,7 +7,8 @@ module CreateMovie
       if invalid?(movie_data)
         log_warning
       else
-        create_movie(movie_data)
+        movie = create_movie(movie_data)
+        create_external_ratings(movie, movie_data[:ratings])
       end
     end
 
@@ -16,7 +17,12 @@ module CreateMovie
     private
 
     def create_movie(movie_data)
-      Movie.create!(movie_data.except(:response))
+      Movie.create!(movie_data.except(:response, :ratings))
+    end
+
+    def create_external_ratings(movie, movie_data)
+      movie.external_ratings.build(movie_data)
+      movie.save!
     end
 
     def omdb_adapter

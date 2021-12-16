@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :external_rating do
+    source { "imdb" }
+    rating { 1.5 }
+  end
+
   factory :movie do
     title { 'Jaws' }
     year { 1975 }

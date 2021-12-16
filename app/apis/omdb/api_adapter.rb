@@ -5,7 +5,7 @@ require 'httparty'
 
 module Omdb
   class ApiAdapter
-    EXCLUDED_ATTRIBUTES = %i[director actors awards country ratings writer type dvd boxoffice production
+    EXCLUDED_ATTRIBUTES = %i[director actors awards country writer type dvd boxoffice production
                              metascore imdbrating imdbvotes imdbid website].freeze
     private_constant :EXCLUDED_ATTRIBUTES
 
@@ -31,8 +31,13 @@ module Omdb
     end
 
     def transform_movie_data(response)
-      response = response.transform_keys! { |k| k.downcase.to_sym }
+      response = response.deep_transform_keys! { |k| k.downcase.to_sym }
       response.except!(*EXCLUDED_ATTRIBUTES)
+      response[:ratings].each do |h|
+        h[:rating] = h.delete :value
+      end
+
+      response
     end
   end
 end
